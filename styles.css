@@ -707,8 +707,7 @@ main {
   gap: 14px;
 }
 
-.site-footer a,
-.site-footer span {
+.footer-links a {
   display: inline-block;
   padding: 10px 14px;
   background: rgba(255, 255, 255, 0.82);
@@ -716,36 +715,26 @@ main {
   box-shadow: 6px 6px 0 var(--shadow);
 }
 
-.site-footer a {
+.footer-links a {
   color: var(--ink);
   text-decoration: none;
 }
 
-.site-footer a:hover,
-.site-footer a:focus-visible {
+.footer-links a:hover,
+.footer-links a:focus-visible {
   transform: translate(3px, 3px);
   box-shadow: 3px 3px 0 var(--shadow);
 }
 
 .footer-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
+  margin: 0;
   font-size: 0.56rem;
-  padding: 6px 10px;
+  line-height: 1.4;
 }
 
-.footer-tag a,
-.footer-tag a:hover,
-.footer-tag a:focus-visible {
-  display: inline;
-  padding: 0;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-  color: inherit;
+.footer-tag a {
+  color: var(--ink);
   text-decoration: underline;
-  transform: none;
 }
 
 .info-strip,
