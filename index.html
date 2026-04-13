@@ -1,160 +1,671 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arcade Cabinet</title>
-    <meta
-      name="description"
-      content="Arcade Cabinet is a Hack Club YSWS for building small arcade games and showing them off in one collection."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body>
-    <div class="page-shell">
-      <header class="hero">
-        <div class="sticker">hack club ysws</div>
-        <div class="hero-copy">
-          <p class="eyebrow">build a tiny game. ship it with style.</p>
-          <h1 class="pixel-title">
-            <span>arcade</span>
-            <span>cabinet</span>
-          </h1>
-          <p class="hero-text">
-            Spend a few focused hours making a polished arcade game, earn grants
-            for parts and tools, and get featured in a shared Hack Club cabinet
-            full of student-built games.
-          </p>
-          <div class="hero-actions">
-            <a class="pixel-button primary" href="#join">join the cabinet</a>
-            <a class="pixel-button secondary" href="#details">see the details</a>
-          </div>
-        </div>
 
-        <div class="cabinet">
-          <div class="screen-bezel">
-            <div class="screen">
-              <div class="marquee">player 1 ready</div>
-              <div class="screen-grid"></div>
-              <div class="pixel-sun"></div>
-              <div class="pixel-mountain mountain-back"></div>
-              <div class="pixel-mountain mountain-front"></div>
-              <div class="pixel-ship">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-            </div>
-          </div>
-          <div class="controls">
-            <div class="joystick">
-              <span class="stick"></span>
-              <span class="ball"></span>
-            </div>
-            <div class="buttons">
-              <span class="button red"></span>
-              <span class="button yellow"></span>
-              <span class="button blue"></span>
-            </div>
-          </div>
-        </div>
-      </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arcade Cabinet</title>
+  <meta name="description"
+    content="Arcade Cabinet is a Hack Club YSWS for building small arcade games and showing them off in one collection." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
 
-      <aside class="side-panel left">
-        <a href="#build">build</a>
-        <a href="#earn">earn</a>
-        <a href="#submit">submit</a>
-      </aside>
-
-      <aside class="side-panel right">
-        <a href="#details">about</a>
-        <a href="#join">join</a>
-        <a href="#faq">faq</a>
-      </aside>
-
-      <main>
-        <section class="info-strip" id="details">
-          <article class="info-card">
-            <p class="card-label">mission</p>
-            <h2>make an arcade game that feels finished</h2>
-            <p>
-              Think score chasing, local co-op, clever mechanics, punchy art, and
-              one strong idea executed well.
-            </p>
-          </article>
-          <article class="info-card" id="earn">
-            <p class="card-label">grants</p>
-            <h2>earn support for your setup</h2>
-            <p>
-              Put real time into the project and unlock money for hardware,
-              software, controllers, tools, and game dev experiments.
-            </p>
-          </article>
-          <article class="info-card" id="submit">
-            <p class="card-label">showcase</p>
-            <h2>get featured in the shared cabinet</h2>
-            <p>
-              Every finished submission becomes part of a community-built lineup
-              of original arcade games.
-            </p>
-          </article>
-        </section>
-
-        <section class="feature-grid" id="build">
-          <div class="feature-large">
-            <p class="card-label">what to build</p>
-            <h2>small scope, sharp execution</h2>
-            <ul>
-              <li>pick one mechanic and polish it hard</li>
-              <li>design around replayability and satisfying feedback</li>
-              <li>ship something other people instantly understand</li>
-            </ul>
-          </div>
-          <div class="feature-small">
-            <p class="card-label">good fits</p>
-            <p>platformers, bullet hell, rhythm, racers, puzzlers, boss fights</p>
-          </div>
-          <div class="feature-small">
-            <p class="card-label">vibe</p>
-            <p>bright pixels, crunchy sound effects, short loops, big personality</p>
-          </div>
-        </section>
-
-        <section class="join-banner" id="join">
-          <div>
-            <p class="card-label">ready?</p>
-            <h2>join Arcade Cabinet and start building</h2>
-            <p>
-              Rally a few friends, sketch a mechanic, and turn it into a cabinet
-              worthy minigame.
-            </p>
-          </div>
-          <a class="pixel-button primary" href="https://hackclub.com/" target="_blank" rel="noreferrer">
-            enter ysws
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <a class="sticker" href="https://hackclub.com/" target="_blank" rel="noreferrer">hack club ysws</a>
+      <div class="hero-copy">
+        <p class="eyebrow">build a tiny browser game. send it to the arcade.</p>
+        <img class="hero-logo" src="./arcade-cabinet-logo.png" alt="Arcade Cabinet logo" />
+        <p class="hero-text">
+          Build and ship a 3-minute playable Arcade Game and get arcade vouchers, trophy tokens, and more!
+        </p>
+        <div class="hero-signup" aria-label="register for arcade cabinet">
+          <label class="sr-only" for="hero-email">email address</label>
+          <input id="hero-email" name="email" type="email" placeholder="enter your email" autocomplete="email" />
+          <a class="pixel-button primary signup-button" href="https://hackclub.com/" target="_blank" rel="noreferrer">
+            register
           </a>
-        </section>
+        </div>
+        <div class="hero-actions hero-actions-secondary">
+          <a class="pixel-button primary" href="#join">join the cabinet</a>
+          <a class="pixel-button secondary" href="#requirements">game rules</a>
+        </div>
+      </div>
 
-        <section class="faq" id="faq">
-          <article class="faq-card">
-            <h3>how long should the game be?</h3>
-            <p>Short is better. Aim for instantly playable and worth replaying.</p>
-          </article>
-          <article class="faq-card">
-            <h3>does it need to be retro?</h3>
-            <p>No. Pixel art fits great, but the real requirement is arcade energy.</p>
-          </article>
-          <article class="faq-card">
-            <h3>can beginners join?</h3>
-            <p>Yes. A small game with care beats an over-scoped project every time.</p>
-          </article>
-        </section>
-      </main>
-    </div>
-  </body>
+      <div class="cabinet">
+        <div class="screen-bezel">
+          <div class="screen" id="flappy-screen" tabindex="0"
+            aria-label="Arcade cabinet flappy game. Press space or tap to flap.">
+            <div class="marquee">flappy mode</div>
+            <div class="screen-grid"></div>
+            <canvas class="game-canvas" id="game-canvas" width="160" height="200"></canvas>
+            <div class="screen-tip">
+              <p>twist mode</p>
+              <p><span class="tip-chip token"></span> token +2 score</p>
+              <p><span class="tip-chip glide"></span> wing soft glide</p>
+            </div>
+            <div class="screen-hud">
+              <span>score <strong id="score-value">0</strong></span>
+              <span>best <strong id="best-value">0</strong></span>
+            </div>
+            <div class="screen-overlay" id="game-overlay">
+              <p class="overlay-title" id="overlay-title">player 1 ready</p>
+              <p class="overlay-text" id="overlay-text">click the game screen first, then press space or click again to
+                flap</p>
+            </div>
+          </div>
+        </div>
+        <div class="controls">
+          <button class="joystick" id="restart-button" type="button" aria-label="Restart game">
+            <span class="stick"></span>
+            <span class="ball"></span>
+          </button>
+          <div class="buttons">
+            <button class="button red" id="flap-button" type="button" aria-label="Flap"></button>
+            <button class="button yellow" id="pause-button" type="button" aria-label="Pause or resume"></button>
+            <button class="button blue" id="restart-button-alt" type="button" aria-label="Restart game"></button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <aside class="side-panel right">
+      <a href="#details">about</a>
+      <a href="#join">join</a>
+      <a href="#faq">faq</a>
+    </aside>
+
+    <main>
+
+      <section class="feature-grid" id="requirements">
+        <div class="feature-large feature-wide">
+          <div class="feature-heading">
+            <div>
+              <p class="card-label">how to qualify</p>
+              <h2>build an arcade game!</h2>
+            </div>
+            <p class="feature-note">doesn't have to be complicated!</p>
+          </div>
+          <div class="qualify-grid">
+            <div class="qualify-item">
+              <span class="qualify-number">01</span>
+              <p>build a simple web-based game that is playable or loopable in under 3 minutes</p>
+            </div>
+            <div class="qualify-item">
+              <span class="qualify-number">02</span>
+              <p>have a clear win or lose state so players instantly understand the run</p>
+            </div>
+            <div class="qualify-item">
+              <span class="qualify-number">03</span>
+              <p>make it work in a browser with html5, godot web export, pico-8, or similar</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="rewards-strip" id="build">
+        <div class="rewards-intro">
+          <p class="card-label">rewards</p>
+          <h2>what's the rewards?</h2>
+          <p>
+            It's an Arcade! Gotta have prizes right?
+          </p>
+        </div>
+        <article class="reward-card">
+          <p class="card-label">top 3</p>
+          <h3>CNC-Cut Trophy Arcade Token</h3>
+          <p>The top three most-played games earn an EXCLUSIVE metal arcade token trophy.</p>
+        </article>
+        <article class="reward-card">
+          <p class="card-label">all submissions</p>
+          <h3>$10 local arcade credit</h3>
+          <p>Join and submit to earn a $10 voucher for your local arcade!</p>
+        </article>
+        <article class="reward-card">
+          <p class="card-label">all submissions</p>
+          <h3>supa cool sticker pack</h3>
+          <p>Get a bunch of arcade style stickers of our logo, arcade boxes, and more!</p>
+        </article>
+      </section>
+
+      <section class="join-banner" id="join">
+        <div>
+          <p class="card-label">ready?</p>
+          <h2>build a game people can finish in one sitting</h2>
+          <p>
+            Keep the scope tight, make the win state obvious, and ship a tiny
+            browser game that deserves another play.
+          </p>
+        </div>
+        <a class="pixel-button primary" href="https://hackclub.com/" target="_blank" rel="noreferrer">
+          enter ysws
+        </a>
+      </section>
+
+      <section class="faq" id="faq">
+        <div class="faq-intro">
+          <p class="card-label">faq</p>
+          <h2>questions about the ysws</h2>
+        </div>
+        <details class="faq-item" open>
+          <summary>do i need polished art to qualify?</summary>
+          <p>
+            No. Programmer art is completely okay. The game just needs to be readable,
+            playable in a browser, and feel good as a short arcade experience.
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary>what kinds of games fit best?</summary>
+          <p>
+            Fast arcade formats work best: score chasers, tiny platformers, reaction
+            games, racers, shooters, and small puzzle loops with a clear ending state.
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary>how short does the game need to be?</summary>
+          <p>
+            A full run should finish in under three minutes, or the game should loop
+            cleanly within that window so players can jump in and replay quickly.
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary>what tools or engines can i use?</summary>
+          <p>
+            Anything that ships in the browser is fair game, including plain html5,
+            godot web export, pico-8, and other browser-ready stacks.
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary>how are the top games chosen?</summary>
+          <p>
+            The top three games are based on plays, so games that are instantly clear
+            and replayable have the strongest shot at landing on the leaderboard.
+          </p>
+        </details>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a href="https://hackclub.com/" target="_blank" rel="noreferrer">hack club</a>
+      <span>Built with &lt;3 by Jos</span>
+    </footer>
+  </div>
+  <script>
+    (() => {
+      const canvas = document.getElementById("game-canvas");
+      const ctx = canvas.getContext("2d");
+      const screen = document.getElementById("flappy-screen");
+      const overlay = document.getElementById("game-overlay");
+      const overlayTitle = document.getElementById("overlay-title");
+      const overlayText = document.getElementById("overlay-text");
+      const scoreValue = document.getElementById("score-value");
+      const bestValue = document.getElementById("best-value");
+      const flapButton = document.getElementById("flap-button");
+      const pauseButton = document.getElementById("pause-button");
+      const restartButton = document.getElementById("restart-button");
+      const restartButtonAlt = document.getElementById("restart-button-alt");
+      const bestKey = "arcade-cabinet-flappy-best";
+
+      const state = {
+        mode: "ready",
+        score: 0,
+        best: Number(localStorage.getItem(bestKey) || 0),
+        lastTime: 0,
+        armed: false,
+        bird: {
+          x: 42,
+          y: 100,
+          velocity: 0,
+          size: 12
+        },
+        pipes: [],
+        powerups: [],
+        pipeTimer: 0,
+        groundOffset: 0,
+        skyOffset: 0,
+        effects: {
+          glideTimer: 0
+        }
+      };
+
+      const world = {
+        width: canvas.width,
+        height: canvas.height,
+        gravity: 0.19,
+        flap: -3.15,
+        speed: 1.55,
+        pipeGap: 54,
+        pipeWidth: 20,
+        pipeInterval: 92,
+        ceiling: 18,
+        floor: 174,
+        tokenScore: 2
+      };
+
+      function updateHud() {
+        scoreValue.textContent = String(state.score);
+        bestValue.textContent = String(state.best);
+      }
+
+      function setOverlay(title, text, visible) {
+        overlayTitle.textContent = title;
+        overlayText.textContent = text;
+        overlay.hidden = !visible;
+      }
+
+      function resetRound(mode = "ready") {
+        state.mode = mode;
+        state.score = 0;
+        state.lastTime = 0;
+        state.pipeTimer = 0;
+        state.groundOffset = 0;
+        state.skyOffset = 0;
+        state.pipes = [];
+        state.powerups = [];
+        state.effects.glideTimer = 0;
+        state.bird.y = 100;
+        state.bird.velocity = 0;
+        updateHud();
+
+        if (mode === "ready") {
+          state.armed = false;
+          setOverlay("player 1 ready", "click the game screen first, then press space or click again to flap", true);
+        }
+
+        if (mode === "paused") {
+          setOverlay("pause", "click the game screen or tap yellow to resume", true);
+        }
+      }
+
+      function startRound() {
+        if (state.mode === "running") {
+          flap();
+          return;
+        }
+
+        resetRound("running");
+        setOverlay("flap!", "thread the gaps and stay above the floor", true);
+        window.setTimeout(() => {
+          if (state.mode === "running") {
+            overlay.hidden = true;
+          }
+        }, 700);
+        flap();
+      }
+
+      function flap() {
+        if (state.mode === "gameover") {
+          startRound();
+          return;
+        }
+
+        if (state.mode === "ready") {
+          startRound();
+          return;
+        }
+
+        if (state.mode !== "running") {
+          return;
+        }
+
+        state.bird.velocity = world.flap;
+      }
+
+      function togglePause() {
+        if (state.mode === "ready" || state.mode === "gameover") {
+          return;
+        }
+
+        if (state.mode === "paused") {
+          state.mode = "running";
+          overlay.hidden = true;
+          return;
+        }
+
+        state.mode = "paused";
+        setOverlay("pause", "click the game screen or tap yellow to resume", true);
+      }
+
+      function spawnPipe() {
+        const gapStart = 40 + Math.random() * 70;
+        const pipeX = world.width + 12;
+
+        state.pipes.push({
+          x: pipeX,
+          gapStart,
+          passed: false
+        });
+
+        const roll = Math.random();
+        if (roll < 0.34) {
+          state.powerups.push({
+            x: pipeX + 34,
+            y: gapStart + world.pipeGap / 2,
+            size: 9,
+            type: roll < 0.17 ? "token" : "glide",
+            phase: Math.random() * Math.PI * 2
+          });
+        }
+      }
+
+      function endRound() {
+        state.mode = "gameover";
+        state.best = Math.max(state.best, state.score);
+        localStorage.setItem(bestKey, String(state.best));
+        updateHud();
+        setOverlay("game over", "press space, tap screen, or hit blue to restart", true);
+      }
+
+      function update(delta) {
+        if (state.mode !== "running") {
+          return;
+        }
+
+        state.skyOffset = (state.skyOffset + delta * 0.1) % 16;
+        state.groundOffset = (state.groundOffset + delta * world.speed) % 24;
+        state.pipeTimer += delta * world.speed;
+        state.effects.glideTimer = Math.max(0, state.effects.glideTimer - delta);
+
+        if (state.pipeTimer >= world.pipeInterval) {
+          state.pipeTimer = 0;
+          spawnPipe();
+        }
+
+        const gravity = state.effects.glideTimer > 0 ? world.gravity * 0.58 : world.gravity;
+        state.bird.velocity += gravity * delta;
+        state.bird.y += state.bird.velocity * delta;
+
+        for (const pipe of state.pipes) {
+          pipe.x -= world.speed * delta;
+
+          if (!pipe.passed && pipe.x + world.pipeWidth < state.bird.x) {
+            pipe.passed = true;
+            state.score += 1;
+            updateHud();
+          }
+        }
+
+        for (const powerup of state.powerups) {
+          powerup.x -= world.speed * delta;
+          powerup.phase += delta * 0.08;
+        }
+
+        state.pipes = state.pipes.filter((pipe) => pipe.x + world.pipeWidth > -8);
+        state.powerups = state.powerups.filter((powerup) => powerup.x + powerup.size > -8);
+
+        const birdLeft = state.bird.x - state.bird.size / 2;
+        const birdRight = state.bird.x + state.bird.size / 2;
+        const birdTop = state.bird.y - state.bird.size / 2;
+        const birdBottom = state.bird.y + state.bird.size / 2;
+
+        if (birdTop <= world.ceiling || birdBottom >= world.floor) {
+          endRound();
+          return;
+        }
+
+        for (const pipe of state.pipes) {
+          const withinPipe = birdRight > pipe.x && birdLeft < pipe.x + world.pipeWidth;
+          const inGap = birdTop > pipe.gapStart && birdBottom < pipe.gapStart + world.pipeGap;
+
+          if (withinPipe && !inGap) {
+            endRound();
+            return;
+          }
+        }
+
+        state.powerups = state.powerups.filter((powerup) => {
+          const size = powerup.size;
+          const pulseY = powerup.y + Math.sin(powerup.phase) * 3;
+          const hit =
+            birdRight > powerup.x - size &&
+            birdLeft < powerup.x + size &&
+            birdBottom > pulseY - size &&
+            birdTop < pulseY + size;
+
+          if (!hit) {
+            return true;
+          }
+
+          if (powerup.type === "token") {
+            state.score += world.tokenScore;
+          } else {
+            state.effects.glideTimer = 180;
+          }
+
+          updateHud();
+          return false;
+        });
+      }
+
+      function drawBackground() {
+        ctx.fillStyle = "#21315d";
+        ctx.fillRect(0, 0, world.width, world.height);
+
+        ctx.save();
+        ctx.translate(-state.skyOffset, 0);
+        ctx.strokeStyle = "rgba(255,255,255,0.08)";
+        ctx.lineWidth = 1;
+        for (let x = 0; x < world.width + 16; x += 16) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, world.height);
+          ctx.stroke();
+        }
+        for (let y = 0; y < world.height; y += 16) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(world.width + 16, y);
+          ctx.stroke();
+        }
+        ctx.restore();
+
+        ctx.fillStyle = "#ffd447";
+        ctx.fillRect(112, 24, 24, 24);
+        ctx.fillStyle = "rgba(255, 212, 71, 0.22)";
+        ctx.fillRect(108, 20, 32, 32);
+
+        ctx.fillStyle = "#5b6fc4";
+        ctx.beginPath();
+        ctx.moveTo(0, 152);
+        ctx.lineTo(18, 138);
+        ctx.lineTo(40, 146);
+        ctx.lineTo(64, 128);
+        ctx.lineTo(92, 146);
+        ctx.lineTo(124, 122);
+        ctx.lineTo(160, 148);
+        ctx.lineTo(160, 200);
+        ctx.lineTo(0, 200);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.fillStyle = "#8898dc";
+        ctx.beginPath();
+        ctx.moveTo(0, 168);
+        ctx.lineTo(28, 154);
+        ctx.lineTo(56, 160);
+        ctx.lineTo(82, 146);
+        ctx.lineTo(106, 160);
+        ctx.lineTo(136, 144);
+        ctx.lineTo(160, 154);
+        ctx.lineTo(160, 200);
+        ctx.lineTo(0, 200);
+        ctx.closePath();
+        ctx.fill();
+      }
+
+      function drawPipes() {
+        for (const pipe of state.pipes) {
+          const topHeight = pipe.gapStart;
+          const bottomY = pipe.gapStart + world.pipeGap;
+          const bottomHeight = world.floor - bottomY;
+
+          ctx.fillStyle = "#37d27d";
+          ctx.fillRect(pipe.x, 0, world.pipeWidth, topHeight);
+          ctx.fillRect(pipe.x - 2, topHeight - 8, world.pipeWidth + 4, 8);
+
+          ctx.fillRect(pipe.x, bottomY, world.pipeWidth, bottomHeight);
+          ctx.fillRect(pipe.x - 2, bottomY, world.pipeWidth + 4, 8);
+
+          ctx.fillStyle = "#1a7e50";
+          ctx.fillRect(pipe.x + 3, 0, 3, topHeight);
+          ctx.fillRect(pipe.x + 3, bottomY, 3, bottomHeight);
+        }
+      }
+
+      function drawPowerups() {
+        for (const powerup of state.powerups) {
+          const y = powerup.y + Math.sin(powerup.phase) * 3;
+
+          if (powerup.type === "token") {
+            ctx.fillStyle = "#ffd447";
+            ctx.fillRect(powerup.x - 5, y - 5, 10, 10);
+            ctx.fillStyle = "#fff4bf";
+            ctx.fillRect(powerup.x - 2, y - 2, 4, 4);
+            continue;
+          }
+
+          ctx.fillStyle = "#29d3c2";
+          ctx.fillRect(powerup.x - 6, y - 3, 12, 6);
+          ctx.fillRect(powerup.x - 2, y - 7, 4, 14);
+          ctx.fillStyle = "#c9fffa";
+          ctx.fillRect(powerup.x - 1, y - 5, 2, 10);
+        }
+      }
+
+      function drawGround() {
+        ctx.fillStyle = "#2f2a4b";
+        ctx.fillRect(0, world.floor, world.width, world.height - world.floor);
+        ctx.fillStyle = "#f2c24d";
+        for (let x = -state.groundOffset; x < world.width + 24; x += 24) {
+          ctx.fillRect(x, world.floor, 16, 8);
+        }
+      }
+
+      function drawBird() {
+        const bob = state.mode === "ready" ? Math.sin(performance.now() / 190) * 2 : 0;
+        const y = state.bird.y + bob;
+        const tilt = Math.max(-0.8, Math.min(0.8, state.bird.velocity * 0.12));
+
+        ctx.save();
+        ctx.translate(state.bird.x, y);
+        ctx.rotate(tilt);
+
+        ctx.fillStyle = state.effects.glideTimer > 0 ? "#6af0df" : "#ff6b6b";
+        ctx.fillRect(-10, -8, 20, 16);
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(2, -7, 6, 12);
+        ctx.fillStyle = "#ffd447";
+        ctx.fillRect(-7, 8, 8, 4);
+        ctx.fillStyle = "#29d3c2";
+        ctx.fillRect(1, 8, 6, 4);
+        ctx.fillStyle = "#131126";
+        ctx.fillRect(6, -3, 2, 2);
+        ctx.restore();
+      }
+
+      function drawReadyPrompt() {
+        if (state.mode !== "ready") {
+          return;
+        }
+
+        ctx.fillStyle = "#ffe37f";
+        ctx.font = '8px "Press Start 2P"';
+        ctx.textAlign = "center";
+        ctx.fillText("tap to start", world.width / 2, 86);
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, world.width, world.height);
+        drawBackground();
+        drawPipes();
+        drawPowerups();
+        drawGround();
+        drawBird();
+        drawReadyPrompt();
+      }
+
+      function frame(time) {
+        const delta = Math.min(1.8, (time - (state.lastTime || time)) / 16.6667);
+        state.lastTime = time;
+        update(delta);
+        draw();
+        requestAnimationFrame(frame);
+      }
+
+      function armScreen() {
+        state.armed = true;
+        screen.focus();
+        if (state.mode === "ready") {
+          setOverlay("player 1 ready", "click again, press space, or tap red to flap", true);
+        }
+      }
+
+      function handlePrimaryAction(event) {
+        event.preventDefault();
+        if (!state.armed) {
+          armScreen();
+          return;
+        }
+
+        screen.focus();
+        flap();
+      }
+
+      screen.addEventListener("pointerdown", handlePrimaryAction);
+      screen.addEventListener("focus", () => {
+        if (!state.armed) {
+          armScreen();
+        }
+      });
+      flapButton.addEventListener("click", handlePrimaryAction);
+      restartButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        state.armed = true;
+        startRound();
+        screen.focus();
+      });
+      restartButtonAlt.addEventListener("click", (event) => {
+        event.preventDefault();
+        state.armed = true;
+        startRound();
+        screen.focus();
+      });
+      pauseButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        togglePause();
+        screen.focus();
+      });
+
+      window.addEventListener("keydown", (event) => {
+        if (!state.armed) {
+          return;
+        }
+
+        if (event.code === "Space" || event.code === "ArrowUp") {
+          event.preventDefault();
+          flap();
+        }
+
+        if (event.key === "p" || event.key === "P") {
+          event.preventDefault();
+          togglePause();
+        }
+
+        if (event.key === "r" || event.key === "R") {
+          event.preventDefault();
+          startRound();
+        }
+      });
+
+      resetRound();
+      draw();
+      requestAnimationFrame(frame);
+    })();
+  </script>
+</body>
+
 </html>
