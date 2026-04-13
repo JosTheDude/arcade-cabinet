@@ -553,6 +553,7 @@ main {
 .info-strip,
 .feature-grid,
 .rewards-strip,
+.gallery,
 .faq {
   display: grid;
   gap: 24px;
@@ -566,6 +567,7 @@ main {
 .feature-large,
 .feature-small,
 .reward-card,
+.gallery-card,
 .join-banner,
 .faq-card {
   padding: 28px;
@@ -735,6 +737,68 @@ main {
   line-height: 1.9;
 }
 
+.gallery {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 56px;
+}
+
+.gallery-intro {
+  grid-column: 1 / -1;
+  margin-bottom: 8px;
+}
+
+.gallery-intro h2 {
+  margin: 12px 0 16px;
+  line-height: 1.35;
+}
+
+.gallery-intro p {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.9;
+}
+
+.gallery-card {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.gallery-card h3 {
+  margin: 20px 0 12px;
+  line-height: 1.5;
+}
+
+.gallery-card p {
+  margin: 0;
+  font-size: 0.72rem;
+  line-height: 1.85;
+}
+
+.gallery-art {
+  height: 168px;
+  border: 4px solid var(--ink);
+  box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.12);
+}
+
+.neon-racer {
+  background:
+    linear-gradient(180deg, #20173b 0%, #50388c 55%, #ff7b72 100%);
+}
+
+.slime-jump {
+  background:
+    linear-gradient(180deg, #1f3a2d 0%, #3ca55c 52%, #d3ff80 100%);
+}
+
+.astro-panic {
+  background:
+    linear-gradient(180deg, #070b1f 0%, #1e3177 50%, #55d6ff 100%);
+}
+
+.ghost-kart {
+  background:
+    linear-gradient(180deg, #251737 0%, #6a3ca2 52%, #ffd447 100%);
+}
+
 @keyframes hover {
   0%,
   100% {
@@ -769,6 +833,7 @@ main {
   .info-strip,
   .feature-grid,
   .rewards-strip,
+  .gallery,
   .faq {
     grid-template-columns: 1fr;
   }
@@ -830,6 +895,8 @@ main {
   .feature-large li,
   .feature-small p,
   .rewards-intro p,
+  .gallery-intro p,
+  .gallery-card p,
   .join-banner p,
   .faq-item p {
     font-size: 0.72rem;
