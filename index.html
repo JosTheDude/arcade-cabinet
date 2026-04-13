@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css?v=20260413-1" />
+  <link rel="stylesheet" href="./styles.css?v=20260413-3" />
 </head>
 
 <body>
@@ -34,9 +34,14 @@
         <div class="hero-signup" aria-label="register for arcade cabinet">
           <label class="sr-only" for="hero-email">email address</label>
           <input id="hero-email" name="email" type="email" placeholder="enter your email" autocomplete="email" />
-          <a class="pixel-button primary signup-button" href="https://hackclub.com/" target="_blank" rel="noreferrer">
-            register
-          </a>
+          <div class="signup-button-wrap">
+            <button class="pixel-button primary signup-button" id="signup-button" type="button"
+              aria-controls="signup-tooltip" aria-expanded="false">
+              register
+            </button>
+            <p class="signup-tooltip" id="signup-tooltip" role="tooltip" hidden>This YSWS isn't approved yet... but
+              let's hope a Gap Year acceptance can make it so!</p>
+          </div>
         </div>
         <div class="hero-actions hero-actions-secondary">
           <a class="pixel-button primary" href="#join">join the cabinet</a>
@@ -45,38 +50,47 @@
         </div>
       </div>
 
-      <div class="cabinet">
-        <div class="screen-bezel">
-          <div class="screen" id="flappy-screen" tabindex="0"
-            aria-label="Arcade cabinet flappy game. Press space or tap to flap.">
-            <div class="marquee">flappy mode</div>
-            <div class="screen-grid"></div>
-            <canvas class="game-canvas" id="game-canvas" width="160" height="200"></canvas>
-            <div class="screen-tip">
-              <p>twist mode</p>
-              <p><span class="tip-chip token"></span> token +2 score</p>
-              <p><span class="tip-chip shield"></span> shield blocks 1 hit</p>
-            </div>
-            <div class="screen-hud">
-              <span>score <strong id="score-value">0</strong></span>
-              <span>best <strong id="best-value">0</strong></span>
-            </div>
-            <div class="screen-overlay" id="game-overlay">
-              <p class="overlay-title" id="overlay-title">player 1 ready</p>
-              <p class="overlay-text" id="overlay-text">click the game screen first, then press space or click again to
-                flap</p>
+      <div class="cabinet-wrap">
+        <div class="playable-callout" aria-hidden="true">
+          <p>playable<br />game!</p>
+          <svg class="playable-arrow" viewBox="0 0 92 88" role="presentation" focusable="false"
+            aria-hidden="true">
+            <polygon class="playable-arrow-main" points="28,0 64,0 64,40 92,40 46,88 0,40 28,40"></polygon>
+          </svg>
+        </div>
+        <div class="cabinet">
+          <div class="screen-bezel">
+            <div class="screen" id="flappy-screen" tabindex="0"
+              aria-label="Arcade cabinet flappy game. Press space or tap to flap.">
+              <div class="marquee">flappy mode</div>
+              <div class="screen-grid"></div>
+              <canvas class="game-canvas" id="game-canvas" width="160" height="200"></canvas>
+              <div class="screen-tip">
+                <p>twist mode</p>
+                <p><span class="tip-chip token"></span> token +2 score</p>
+                <p><span class="tip-chip shield"></span> shield blocks 1 hit</p>
+              </div>
+              <div class="screen-hud">
+                <span>score <strong id="score-value">0</strong></span>
+                <span>best <strong id="best-value">0</strong></span>
+              </div>
+              <div class="screen-overlay" id="game-overlay">
+                <p class="overlay-title" id="overlay-title">player 1 ready</p>
+                <p class="overlay-text" id="overlay-text">click the game screen first, then press space or click again to
+                  flap</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="controls">
-          <button class="joystick" id="restart-button" type="button" aria-label="Restart game">
-            <span class="stick"></span>
-            <span class="ball"></span>
-          </button>
-          <div class="buttons">
-            <button class="button red" id="flap-button" type="button" aria-label="Flap"></button>
-            <button class="button yellow" id="pause-button" type="button" aria-label="Pause or resume"></button>
-            <button class="button blue" id="restart-button-alt" type="button" aria-label="Restart game"></button>
+          <div class="controls">
+            <button class="joystick" id="restart-button" type="button" aria-label="Restart game">
+              <span class="stick"></span>
+              <span class="ball"></span>
+            </button>
+            <div class="buttons">
+              <button class="button red" id="flap-button" type="button" aria-label="Flap"></button>
+              <button class="button yellow" id="pause-button" type="button" aria-label="Pause or resume"></button>
+              <button class="button blue" id="restart-button-alt" type="button" aria-label="Restart game"></button>
+            </div>
           </div>
         </div>
       </div>
@@ -253,7 +267,7 @@
       <a href="https://jos.gg/" target="_blank" rel="noreferrer">Built with &lt;3 by Jos</a>
     </footer>
   </div>
-  <script src="./transitions.js"></script>
+  <script src="./transitions.js?v=20260413-2"></script>
   <script>
     (() => {
       const canvas = document.getElementById("game-canvas");

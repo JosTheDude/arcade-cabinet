@@ -7,6 +7,18 @@
     root.classList.add("page-ready");
   });
 
+  const signupButton = document.getElementById("signup-button");
+  const signupTooltip = document.getElementById("signup-tooltip");
+
+  const setSignupTooltip = (visible) => {
+    if (!signupButton || !signupTooltip) {
+      return;
+    }
+
+    signupTooltip.hidden = !visible;
+    signupButton.setAttribute("aria-expanded", String(visible));
+  };
+
   const isInternalPageLink = (anchor) => {
     if (!anchor) {
       return false;
@@ -61,4 +73,30 @@
       window.location.href = nextUrl.href;
     }, 360);
   });
+
+  if (signupButton && signupTooltip) {
+    signupButton.addEventListener("click", () => {
+      setSignupTooltip(signupTooltip.hidden);
+    });
+
+    document.addEventListener("click", (event) => {
+      if (signupTooltip.hidden) {
+        return;
+      }
+
+      if (event.target.closest(".signup-button-wrap")) {
+        return;
+      }
+
+      setSignupTooltip(false);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape" || signupTooltip.hidden) {
+        return;
+      }
+
+      setSignupTooltip(false);
+    });
+  }
 })();

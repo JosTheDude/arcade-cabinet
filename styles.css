@@ -210,7 +210,51 @@ body.is-leaving .transition-curtain {
 }
 
 .signup-button {
+  display: block;
   flex: 0 0 auto;
+  font: inherit;
+  cursor: pointer;
+}
+
+.signup-button-wrap {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.signup-tooltip {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  z-index: 20;
+  width: min(320px, calc(100vw - 48px));
+  margin: 0;
+  padding: 12px 14px;
+  border: 4px solid var(--ink);
+  box-shadow: 8px 8px 0 var(--shadow);
+  background: var(--panel);
+  color: var(--shadow);
+  font-size: 0.6rem;
+  line-height: 1.6;
+}
+
+.signup-tooltip::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  right: 22px;
+  border-width: 0 10px 12px;
+  border-style: solid;
+  border-color: transparent transparent var(--ink);
+}
+
+.signup-tooltip::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 26px;
+  border-width: 0 6px 8px;
+  border-style: solid;
+  border-color: transparent transparent var(--panel);
 }
 
 .hero-text,
@@ -284,9 +328,57 @@ body.is-leaving .transition-curtain {
   border: 0;
 }
 
-.cabinet {
+.cabinet-wrap {
+  position: relative;
   justify-self: center;
   width: min(420px, 100%);
+  padding-top: 122px;
+}
+
+.playable-callout {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 4;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  transform: translateX(-38%) rotate(4deg);
+  pointer-events: none;
+}
+
+.playable-callout p {
+  margin: 0;
+  padding: 14px 18px;
+  background: var(--accent);
+  border: 4px solid var(--ink);
+  box-shadow: 8px 8px 0 var(--shadow);
+  color: var(--white);
+  font-size: 0.56rem;
+  line-height: 1.7;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.playable-arrow {
+  display: block;
+  width: 86px;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(6px 6px 0 var(--shadow));
+  animation: point-bob 1.8s steps(2, end) infinite;
+}
+
+.playable-arrow-main {
+  fill: var(--panel-alt);
+  stroke: var(--ink);
+  stroke-width: 4px;
+  stroke-linejoin: miter;
+  vector-effect: non-scaling-stroke;
+}
+
+.cabinet {
+  width: 100%;
   padding: 18px;
   background: linear-gradient(180deg, #ffefb8 0%, #f7b546 100%);
   border: 6px solid var(--ink);
@@ -953,6 +1045,17 @@ main {
   }
 }
 
+@keyframes point-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(6px);
+  }
+}
+
 @media (max-width: 1180px) {
   .side-panel {
     display: none;
@@ -963,14 +1066,73 @@ main {
   }
 }
 
+@media (max-height: 900px) and (min-width: 981px) {
+  body::after {
+    height: 112px;
+    opacity: 0.78;
+  }
+
+  .page-shell {
+    padding-bottom: 72px;
+  }
+
+  .hero {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 36px;
+    align-items: start;
+    min-height: auto;
+    padding-top: 72px;
+  }
+
+  .sticker {
+    top: 0;
+  }
+
+  .hero-logo {
+    width: min(100%, 420px);
+  }
+
+  .hero-actions {
+    margin-top: 24px;
+  }
+}
+
+@media (max-height: 760px) and (min-width: 981px) {
+  .hero {
+    gap: 24px;
+    padding-top: 64px;
+  }
+
+  .sticker {
+    transform: rotate(-8deg) scale(0.92);
+    transform-origin: left top;
+  }
+
+  .hero-text,
+  .signup-tooltip {
+    font-size: 0.72rem;
+  }
+
+  .hero-actions-secondary .pixel-button {
+    padding: 10px 14px;
+    font-size: 0.6rem;
+  }
+}
+
 @media (max-width: 980px) {
   .hero {
     grid-template-columns: 1fr;
     padding-top: 64px;
+    min-height: auto;
   }
 
   .cabinet {
     width: min(480px, 100%);
+  }
+
+  .cabinet-wrap {
+    width: min(480px, 100%);
+    padding-top: 112px;
   }
 
   .info-strip,
@@ -1016,8 +1178,10 @@ main {
   }
 
   .sticker {
-    left: 6px;
-    top: 8px;
+    position: relative;
+    top: auto;
+    left: auto;
+    margin-bottom: 14px;
     font-size: 0.58rem;
   }
 
@@ -1025,6 +1189,23 @@ main {
     width: min(100%, 420px);
     margin-top: 12px;
     filter: drop-shadow(8px 8px 0 var(--shadow));
+  }
+
+  .cabinet-wrap {
+    padding-top: 96px;
+  }
+
+  .playable-callout {
+    transform: translateX(-50%) rotate(0deg);
+  }
+
+  .playable-callout p {
+    padding: 12px 14px;
+    font-size: 0.48rem;
+  }
+
+  .playable-arrow {
+    width: 68px;
   }
 
   .guides-copy h1 {
@@ -1041,8 +1222,25 @@ main {
   }
 
   .hero-signup input,
+  .signup-button-wrap,
   .signup-button {
     width: 100%;
+  }
+
+  .signup-tooltip {
+    width: 100%;
+    right: auto;
+    left: 0;
+  }
+
+  .signup-tooltip::before {
+    right: auto;
+    left: 24px;
+  }
+
+  .signup-tooltip::after {
+    right: auto;
+    left: 28px;
   }
 
   .hero-text,
