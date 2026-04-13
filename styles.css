@@ -688,15 +688,23 @@ main {
 
 .site-footer {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 14px;
+  gap: 10px;
   margin-top: 40px;
   padding: 18px 20px;
   text-align: center;
   font-size: 0.68rem;
   text-transform: uppercase;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
 }
 
 .site-footer a,
@@ -717,6 +725,27 @@ main {
 .site-footer a:focus-visible {
   transform: translate(3px, 3px);
   box-shadow: 3px 3px 0 var(--shadow);
+}
+
+.footer-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.56rem;
+  padding: 6px 10px;
+}
+
+.footer-tag a,
+.footer-tag a:hover,
+.footer-tag a:focus-visible {
+  display: inline;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: inherit;
+  text-decoration: underline;
+  transform: none;
 }
 
 .info-strip,
