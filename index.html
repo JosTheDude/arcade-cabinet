@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arcade Cabinet</title>
+    <meta
+      name="description"
+      content="Arcade Cabinet is a Hack Club YSWS for building small arcade games and showing them off in one collection."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="sticker">hack club ysws</div>
+        <div class="hero-copy">
+          <p class="eyebrow">build a tiny game. ship it with style.</p>
+          <h1 class="pixel-title">
+            <span>arcade</span>
+            <span>cabinet</span>
+          </h1>
+          <p class="hero-text">
+            Spend a few focused hours making a polished arcade game, earn grants
+            for parts and tools, and get featured in a shared Hack Club cabinet
+            full of student-built games.
+          </p>
+          <div class="hero-actions">
+            <a class="pixel-button primary" href="#join">join the cabinet</a>
+            <a class="pixel-button secondary" href="#details">see the details</a>
+          </div>
+        </div>
+
+        <div class="cabinet">
+          <div class="screen-bezel">
+            <div class="screen">
+              <div class="marquee">player 1 ready</div>
+              <div class="screen-grid"></div>
+              <div class="pixel-sun"></div>
+              <div class="pixel-mountain mountain-back"></div>
+              <div class="pixel-mountain mountain-front"></div>
+              <div class="pixel-ship">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+          <div class="controls">
+            <div class="joystick">
+              <span class="stick"></span>
+              <span class="ball"></span>
+            </div>
+            <div class="buttons">
+              <span class="button red"></span>
+              <span class="button yellow"></span>
+              <span class="button blue"></span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <aside class="side-panel left">
+        <a href="#build">build</a>
+        <a href="#earn">earn</a>
+        <a href="#submit">submit</a>
+      </aside>
+
+      <aside class="side-panel right">
+        <a href="#details">about</a>
+        <a href="#join">join</a>
+        <a href="#faq">faq</a>
+      </aside>
+
+      <main>
+        <section class="info-strip" id="details">
+          <article class="info-card">
+            <p class="card-label">mission</p>
+            <h2>make an arcade game that feels finished</h2>
+            <p>
+              Think score chasing, local co-op, clever mechanics, punchy art, and
+              one strong idea executed well.
+            </p>
+          </article>
+          <article class="info-card" id="earn">
+            <p class="card-label">grants</p>
+            <h2>earn support for your setup</h2>
+            <p>
+              Put real time into the project and unlock money for hardware,
+              software, controllers, tools, and game dev experiments.
+            </p>
+          </article>
+          <article class="info-card" id="submit">
+            <p class="card-label">showcase</p>
+            <h2>get featured in the shared cabinet</h2>
+            <p>
+              Every finished submission becomes part of a community-built lineup
+              of original arcade games.
+            </p>
+          </article>
+        </section>
+
+        <section class="feature-grid" id="build">
+          <div class="feature-large">
+            <p class="card-label">what to build</p>
+            <h2>small scope, sharp execution</h2>
+            <ul>
+              <li>pick one mechanic and polish it hard</li>
+              <li>design around replayability and satisfying feedback</li>
+              <li>ship something other people instantly understand</li>
+            </ul>
+          </div>
+          <div class="feature-small">
+            <p class="card-label">good fits</p>
+            <p>platformers, bullet hell, rhythm, racers, puzzlers, boss fights</p>
+          </div>
+          <div class="feature-small">
+            <p class="card-label">vibe</p>
+            <p>bright pixels, crunchy sound effects, short loops, big personality</p>
+          </div>
+        </section>
+
+        <section class="join-banner" id="join">
+          <div>
+            <p class="card-label">ready?</p>
+            <h2>join Arcade Cabinet and start building</h2>
+            <p>
+              Rally a few friends, sketch a mechanic, and turn it into a cabinet
+              worthy minigame.
+            </p>
+          </div>
+          <a class="pixel-button primary" href="https://hackclub.com/" target="_blank" rel="noreferrer">
+            enter ysws
+          </a>
+        </section>
+
+        <section class="faq" id="faq">
+          <article class="faq-card">
+            <h3>how long should the game be?</h3>
+            <p>Short is better. Aim for instantly playable and worth replaying.</p>
+          </article>
+          <article class="faq-card">
+            <h3>does it need to be retro?</h3>
+            <p>No. Pixel art fits great, but the real requirement is arcade energy.</p>
+          </article>
+          <article class="faq-card">
+            <h3>can beginners join?</h3>
+            <p>Yes. A small game with care beats an over-scoped project every time.</p>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
