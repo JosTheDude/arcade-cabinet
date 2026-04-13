@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arcade Cabinet Guides</title>
+  <script>
+    if (sessionStorage.getItem("arcade-transition") === "1") {
+      document.documentElement.classList.add("is-entering");
+      sessionStorage.removeItem("arcade-transition");
+    }
+  </script>
+  <meta name="description"
+    content="Starter guides for making browser-based arcade games with engines like Godot, Unity, Phaser, Construct, GDevelop, and PICO-8." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <div class="transition-curtain" aria-hidden="true"></div>
+  <div class="page-shell guides-shell">
+    <header class="guides-hero">
+      <a class="sticker" href="./index.html">back to arcade</a>
+      <div class="guides-copy">
+        <p class="eyebrow" style="margin-top: 100px">guide gallery</p>
+        <h1>build a game for the web</h1>
+        <p class="hero-text">
+          Want to join Arcade Cabinet? You don't need experience! These links will bring you to top-tier guides for some
+          of the most well-known engines <i>on the planet!</i>
+        </p>
+      </div>
+    </header>
+
+    <aside class="side-panel right">
+      <a href="./index.html">about</a>
+      <a href="./guides.html">guides</a>
+    </aside>
+
+    <main class="guides-main">
+      <section class="guide-gallery">
+        <article class="guide-card">
+          <p class="card-label">godot</p>
+          <h2>get started in godot</h2>
+          <p>Official guide for getting a Godot project running in the browser.</p>
+          <a class="pixel-button primary"
+            href="https://docs.godotengine.org/en/4.3/getting_started/workflow/export/exporting_for_web.html"
+            target="_blank" rel="noreferrer">open guide</a>
+        </article>
+
+        <!--  <article class="guide-card">
+          <p class="card-label">unity</p>
+          <h2>webgl build guide</h2>
+          <p>Unity’s manual for switching to WebGL and building a browser export.</p>
+          <a class="pixel-button primary" href="https://docs.unity3d.com/cn/2023.1/Manual/webgl-building.html"
+            target="_blank" rel="noreferrer">open guide</a>
+        </article> -->
+
+        <article class="guide-card">
+          <p class="card-label">phaser</p>
+          <h2>get started in phaser</h2>
+          <p>Official Phaser tutorial for making a small web game with JavaScript.</p>
+          <a class="pixel-button primary"
+            href="https://docs.phaser.io/phaser/getting-started/making-your-first-phaser-game" target="_blank"
+            rel="noreferrer">open guide</a>
+        </article>
+
+        <article class="guide-card">
+          <p class="card-label">construct</p>
+          <h2>get started in construct</h2>
+          <p>Official Construct tutorial for making a small game with the Construct Engine.</p>
+          <a class="pixel-button primary" href="https://www.construct.net/en/make-games/manuals/construct-3"
+            target="_blank" rel="noreferrer">open guide</a>
+        </article>
+
+        <section class="guides-note">
+          <p class="card-label">tip</p>
+          <h2>So, what should i use?</h2>
+          <p>Picking a game engine might seem like a hard choice... but your skills mostly carry over betweeh them! Try
+            whatever feels right for you.</p>
+          <p>
+            Godot, Phaser, and Construct are awesome batteries-included engines
+            for game development on the web. If you're looking to make something simple and have
+            little programming experience, try Phaser or Construct. Want to go with something more powerful?
+            Godot is great and is actually used by enterprise companies to make games too!
+          </p>
+          <p>
+            questions? ask in the #arcade-cabinet slack channel!
+          </p>
+          <a class="pixel-button secondary" href="./index.html">go back and join</a>
+        </section>
+    </main>
+  </div>
+  <script src="./transitions.js"></script>
+</body>
+
+</html>

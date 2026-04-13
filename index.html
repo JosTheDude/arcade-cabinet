@@ -5,8 +5,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Arcade Cabinet</title>
+  <script>
+    if (sessionStorage.getItem("arcade-transition") === "1") {
+      document.documentElement.classList.add("is-entering");
+      sessionStorage.removeItem("arcade-transition");
+    }
+  </script>
   <meta name="description"
     content="Arcade Cabinet is a Hack Club YSWS for building small arcade games and showing them off in one collection." />
+  <link rel="icon" type="image/png" href="./logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
@@ -14,6 +21,7 @@
 </head>
 
 <body>
+  <div class="transition-curtain" aria-hidden="true"></div>
   <div class="page-shell">
     <header class="hero">
       <a class="sticker" href="https://hackclub.com/" target="_blank" rel="noreferrer">hack club ysws</a>
@@ -33,6 +41,7 @@
         <div class="hero-actions hero-actions-secondary">
           <a class="pixel-button primary" href="#join">join the cabinet</a>
           <a class="pixel-button secondary" href="#requirements">game rules</a>
+          <a class="pixel-button secondary" href="./guides.html">guides</a>
         </div>
       </div>
 
@@ -75,8 +84,7 @@
 
     <aside class="side-panel right">
       <a href="#requirements">about</a>
-      <a href="#join">join</a>
-      <a href="#faq">faq</a>
+      <a href="./guides.html">guides</a>
     </aside>
 
     <main>
@@ -86,22 +94,22 @@
           <div class="feature-heading">
             <div>
               <p class="card-label">how to qualify</p>
-              <h2>build an arcade game!</h2>
+              <h2>build a short arcade game!</h2>
             </div>
-            <p class="feature-note">doesn't have to be complicated!</p>
+            <p class="feature-note">is that a bird? a plane? no it's a game!</p>
           </div>
           <div class="qualify-grid">
             <div class="qualify-item">
               <span class="qualify-number">01</span>
-              <p>build a simple web-based game that is playable or loopable in under 3 minutes</p>
+              <p>build a simple web-based game that is playable (or loopable!) in under 3 minutes</p>
             </div>
             <div class="qualify-item">
               <span class="qualify-number">02</span>
-              <p>have a clear win or lose state so players instantly understand the run</p>
+              <p>have a clear win or lose state - a level up counts as well!</p>
             </div>
             <div class="qualify-item">
               <span class="qualify-number">03</span>
-              <p>make it work in a browser with html5, godot web export, pico-8, or similar</p>
+              <p>make it work in a browser with html5, godot web export, phaser, or similar</p>
             </div>
           </div>
         </div>
@@ -151,10 +159,13 @@
           <h2>questions about the ysws</h2>
         </div>
         <details class="faq-item" open>
-          <summary>do i need polished art to qualify?</summary>
+          <summary>do i need good art to qualify?</summary>
           <p>
-            No. Programmer art is completely okay. The game just needs to be readable,
+            No! Programmer art is completely okay. The game just needs to be readable,
             playable in a browser, and feel good as a short arcade experience.
+          </p>
+          <p>
+            Go ham and have fun making it!
           </p>
         </details>
         <details class="faq-item">
@@ -163,12 +174,18 @@
             Fast arcade formats work best: score chasers, tiny platformers, reaction
             games, racers, shooters, and small puzzle loops with a clear ending state.
           </p>
+          <p>
+            You can browse our gallery below for inspo!
+          </p>
         </details>
         <details class="faq-item">
           <summary>how short does the game need to be?</summary>
           <p>
             A full run should finish in under three minutes, or the game should loop
             cleanly within that window so players can jump in and replay quickly.
+          </p>
+          <p>
+            If the game 'levels up' (ie. difficulty increases) - that counts too!
           </p>
         </details>
         <details class="faq-item">
@@ -177,12 +194,21 @@
             Anything that ships in the browser is fair game, including plain html5,
             godot web export, pico-8, and other browser-ready stacks.
           </p>
+          <p>
+            Don't know how to get started? Check out our <a href="./guides.html">guides!</a>
+          </p>
         </details>
         <details class="faq-item">
           <summary>how are the top games chosen?</summary>
           <p>
-            The top three games are based on plays, so games that are instantly clear
-            and replayable have the strongest shot at landing on the leaderboard.
+            The top three games are based on plays. Re-plays don't count!
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary>what if i want to make an infinite game?</summary>
+          <p>
+            That's okay! We recommend adding a Time Limit and a score competition. Gotta get the most within the
+            timeframe - think Tetris!
           </p>
         </details>
       </section>
@@ -217,9 +243,10 @@
 
     <footer class="site-footer">
       <a href="https://hackclub.com/" target="_blank" rel="noreferrer">hack club</a>
-      <span>Built with &lt;3 by Jos</span>
+      <a href="https://jos.gg/" target="_blank" rel="noreferrer">Built with &lt;3 by Jos</a>
     </footer>
   </div>
+  <script src="./transitions.js"></script>
   <script>
     (() => {
       const canvas = document.getElementById("game-canvas");
