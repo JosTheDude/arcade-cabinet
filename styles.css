@@ -726,17 +726,6 @@ main {
   box-shadow: 3px 3px 0 var(--shadow);
 }
 
-.footer-tag {
-  margin: 0;
-  font-size: 0.56rem;
-  line-height: 1.4;
-}
-
-.footer-tag a {
-  color: var(--ink);
-  text-decoration: underline;
-}
-
 .info-strip,
 .feature-grid,
 .rewards-strip,

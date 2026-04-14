@@ -267,10 +267,6 @@
         <a href="https://hackclub.com/" target="_blank" rel="noreferrer">hack club</a>
         <a href="https://jos.gg/" target="_blank" rel="noreferrer">Built with &lt;3 by Jos</a>
       </div>
-      <p class="footer-tag">
-        This website is
-        <a href="https://github.com/JosTheDude/arcade-cabinet" target="_blank" rel="noreferrer">open source</a>
-      </p>
     </footer>
   </div>
   <script src="./transitions.js?v=20260413-2"></script>
@@ -290,10 +286,36 @@
       const restartButtonAlt = document.getElementById("restart-button-alt");
       const bestKey = "arcade-cabinet-flappy-best";
 
+      function loadBestScore() {
+        try {
+          const stored = Number(localStorage.getItem(bestKey) || 0);
+          return Number.isFinite(stored) && stored > 0 ? stored : 0;
+        } catch {
+          return 0;
+        }
+      }
+
+      function persistBestScore() {
+        try {
+          localStorage.setItem(bestKey, String(state.best));
+        } catch {
+          return;
+        }
+      }
+
+      function syncBestScore() {
+        if (state.score <= state.best) {
+          return;
+        }
+
+        state.best = state.score;
+        persistBestScore();
+      }
+
       const state = {
         mode: "ready",
         score: 0,
-        best: Number(localStorage.getItem(bestKey) || 0),
+        best: loadBestScore(),
         lastTime: 0,
         armed: false,
         bird: {
@@ -434,8 +456,7 @@
 
       function endRound() {
         state.mode = "gameover";
-        state.best = Math.max(state.best, state.score);
-        localStorage.setItem(bestKey, String(state.best));
+        syncBestScore();
         updateHud();
         setOverlay("game over", "press space, tap screen, or hit blue to restart", true);
       }
@@ -463,6 +484,7 @@
           if (!pipe.passed && pipe.x + world.pipeWidth < state.bird.x) {
             pipe.passed = true;
             state.score += 1;
+            syncBestScore();
             updateHud();
           }
         }
@@ -521,6 +543,7 @@
             state.effects.shield = 1;
           }
 
+          syncBestScore();
           updateHud();
           return false;
         });
