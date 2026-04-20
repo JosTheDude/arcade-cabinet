@@ -336,12 +336,12 @@
       const world = {
         width: canvas.width,
         height: canvas.height,
-        gravity: 0.19,
+        gravity: 0.18,
         flap: -3.15,
-        speed: 1.55,
-        pipeGap: 54,
+        speed: 1.45,
+        pipeGap: 60,
         pipeWidth: 20,
-        pipeInterval: 92,
+        pipeInterval: 98,
         ceiling: 18,
         floor: 174,
         tokenScore: 2
@@ -432,7 +432,7 @@
       }
 
       function spawnPipe() {
-        const gapStart = 40 + Math.random() * 70;
+        const gapStart = 44 + Math.random() * 62;
         const pipeX = world.width + 12;
 
         state.pipes.push({
