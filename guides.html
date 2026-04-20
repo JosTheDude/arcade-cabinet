@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="./logo.png" />
-  <link rel="stylesheet" href="./styles.css?v=20260414-1" />
+  <link rel="stylesheet" href="./styles.css?v=20260420-7" />
 </head>
 
 <body>
@@ -26,6 +26,10 @@
     <nav class="page-select" aria-label="page select">
       <a href="./index.html">about</a>
       <a class="is-active" href="./guides.html" aria-current="page">guides</a>
+      <button class="page-select-register" id="open-register-modal" type="button" aria-haspopup="dialog"
+        aria-controls="register-modal" aria-expanded="false">
+        register
+      </button>
     </nav>
     <header class="guides-hero">
       <a class="sticker" href="./index.html">back to arcade</a>
@@ -102,7 +106,33 @@
     </footer>
 
   </div>
-  <script src="./transitions.js?v=20260413-2"></script>
+  <div class="register-modal" id="register-modal" role="dialog" aria-modal="true" aria-labelledby="register-title"
+    hidden>
+    <div class="register-modal-backdrop" data-modal-close></div>
+    <div class="register-modal-card">
+      <button class="register-modal-close" id="close-register-modal" type="button" aria-label="Close register modal">
+        close
+      </button>
+      <p class="card-label">join the cabinet</p>
+      <h2 id="register-title">enter your email</h2>
+      <p class="register-modal-copy">
+        Drop your email here and hit register to join the Arcade Cabinet waitlist.
+      </p>
+      <div class="hero-signup register-modal-signup" aria-label="register for arcade cabinet in modal">
+        <label class="sr-only" for="modal-email">email address</label>
+        <input id="modal-email" name="email" type="email" placeholder="enter your email" autocomplete="email" />
+        <div class="signup-button-wrap">
+          <button class="pixel-button primary signup-button" id="modal-signup-button" type="button"
+            aria-controls="modal-signup-tooltip" aria-expanded="false">
+            register
+          </button>
+          <p class="signup-tooltip register-modal-tooltip" id="modal-signup-tooltip" role="tooltip" hidden>This YSWS
+            isn't approved yet... but let's hope a Gap Year acceptance can make it so!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./transitions.js?v=20260420-3"></script>
 </body>
 
 </html>

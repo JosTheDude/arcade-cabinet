@@ -14,6 +14,12 @@
   --section-gap: clamp(24px, 3vw, 32px);
   --hero-gap: clamp(32px, 4vw, 48px);
   --hero-stack-gap: clamp(16px, 2vw, 22px);
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-press: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-glide: cubic-bezier(0.4, 0.14, 0.18, 1);
+  --duration-fast: 180ms;
+  --duration-base: 320ms;
+  --duration-slow: 560ms;
 }
 
 * {
@@ -40,49 +46,37 @@ body {
   color: var(--ink);
 }
 
-body::after {
-  content: "";
-  position: fixed;
-  inset: auto 0 0;
-  height: 160px;
-  background:
-    radial-gradient(circle at 4% 100%, var(--cloud) 0 70px, transparent 72px),
-    radial-gradient(circle at 18% 100%, var(--cloud) 0 84px, transparent 86px),
-    radial-gradient(circle at 34% 100%, var(--cloud) 0 76px, transparent 78px),
-    radial-gradient(circle at 50% 100%, var(--cloud) 0 92px, transparent 94px),
-    radial-gradient(circle at 67% 100%, var(--cloud) 0 78px, transparent 80px),
-    radial-gradient(circle at 82% 100%, var(--cloud) 0 64px, transparent 66px),
-    radial-gradient(circle at 95% 100%, var(--cloud) 0 88px, transparent 90px);
-  pointer-events: none;
-  opacity: 0.95;
-}
-
 .transition-curtain {
   position: fixed;
   inset: 0;
   z-index: 2500;
   pointer-events: none;
   opacity: 0;
-  transform: none;
-  background: rgba(19, 17, 38, 0.12);
+  transform: scale(1.02);
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.28), transparent 44%),
+    linear-gradient(180deg, rgba(22, 19, 43, 0.52) 0%, rgba(22, 19, 43, 0.2) 100%);
+  backdrop-filter: blur(0);
 }
 
 .page-shell {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
   transition:
-    opacity 0.16s ease-out,
-    transform 0.16s ease-out;
+    opacity var(--duration-base) var(--ease-smooth),
+    transform var(--duration-base) var(--ease-smooth),
+    filter var(--duration-base) var(--ease-smooth);
 }
 
 html.is-entering .page-shell {
   opacity: 0;
-  transform: translateY(4px);
+  transform: translateY(22px) scale(0.985);
+  filter: blur(14px) saturate(0.86);
 }
 
 html.is-entering .transition-curtain {
   opacity: 1;
-  animation: curtain-open 0.2s ease-out forwards;
+  animation: curtain-open var(--duration-base) var(--ease-smooth) forwards;
 }
 
 body.is-leaving {
@@ -91,12 +85,29 @@ body.is-leaving {
 
 body.is-leaving .page-shell {
   opacity: 0;
-  transform: translateY(-4px);
+  transform: translateY(-18px) scale(0.985);
+  filter: blur(12px) saturate(0.86);
 }
 
 body.is-leaving .transition-curtain {
   opacity: 1;
-  animation: curtain-close 0.14s ease-out forwards;
+  animation: curtain-close 420ms var(--ease-glide) forwards;
+}
+
+.motion-item {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity var(--duration-slow) var(--ease-smooth),
+    transform var(--duration-slow) var(--ease-smooth);
+  transition-delay: calc(var(--motion-index, 0) * 48ms);
+}
+
+html.motion-enabled:not(.page-ready) .motion-item,
+html.is-entering .motion-item,
+body.is-leaving .motion-item {
+  opacity: 0;
+  transform: translateY(18px);
 }
 
 .page-shell {
@@ -111,6 +122,7 @@ body.is-leaving .transition-curtain {
 }
 
 .hero {
+  position: relative;
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: var(--hero-gap);
@@ -120,6 +132,8 @@ body.is-leaving .transition-curtain {
 }
 
 .hero-copy {
+  grid-column: 1;
+  grid-row: 1;
   display: grid;
   align-content: start;
   gap: var(--hero-stack-gap);
@@ -161,17 +175,22 @@ body.is-leaving .transition-curtain {
   z-index: 40;
   display: flex;
   gap: 12px;
+  align-items: center;
 }
 
-.page-select a {
+.page-select a,
+.page-select-register {
   padding: 12px 16px;
   background: var(--white);
   border: 4px solid var(--ink);
   box-shadow: 8px 8px 0 var(--shadow);
   color: var(--ink);
-  text-decoration: none;
   text-transform: uppercase;
   font-size: 0.64rem;
+}
+
+.page-select a {
+  text-decoration: none;
 }
 
 .page-select a.is-active {
@@ -179,9 +198,17 @@ body.is-leaving .transition-curtain {
 }
 
 .page-select a:hover,
-.page-select a:focus-visible {
+.page-select a:focus-visible,
+.page-select-register:hover,
+.page-select-register:focus-visible {
   transform: translate(4px, 4px);
   box-shadow: 4px 4px 0 var(--shadow);
+}
+
+.page-select-register {
+  font: inherit;
+  cursor: pointer;
+  background: var(--accent-2);
 }
 
 .sticker {
@@ -189,6 +216,9 @@ body.is-leaving .transition-curtain {
   position: absolute;
   top: 12px;
   left: 0;
+  z-index: 5;
+  width: fit-content;
+  max-width: max-content;
   padding: 12px 18px;
   background: #ff4768;
   color: var(--white);
@@ -197,6 +227,7 @@ body.is-leaving .transition-curtain {
   transform: rotate(-10deg);
   font-size: 0.7rem;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .eyebrow,
@@ -267,7 +298,7 @@ body.is-leaving .transition-curtain {
 
 .signup-tooltip {
   position: absolute;
-  top: calc(100% + 12px);
+  bottom: calc(100% + 12px);
   right: 0;
   z-index: 20;
   width: min(320px, calc(100vw - 48px));
@@ -279,26 +310,37 @@ body.is-leaving .transition-curtain {
   color: var(--shadow);
   font-size: 0.6rem;
   line-height: 1.6;
+  opacity: 0;
+  transform: translateY(6px) scale(0.96);
+  transform-origin: bottom right;
+  transition:
+    opacity 200ms var(--ease-smooth),
+    transform 220ms var(--ease-smooth);
 }
 
 .signup-tooltip::before {
   content: "";
   position: absolute;
-  top: -12px;
+  bottom: -12px;
   right: 22px;
-  border-width: 0 10px 12px;
+  border-width: 12px 10px 0;
   border-style: solid;
-  border-color: transparent transparent var(--ink);
+  border-color: var(--ink) transparent transparent;
 }
 
 .signup-tooltip::after {
   content: "";
   position: absolute;
-  top: -8px;
+  bottom: -8px;
   right: 26px;
-  border-width: 0 6px 8px;
+  border-width: 8px 6px 0;
   border-style: solid;
-  border-color: transparent transparent var(--panel);
+  border-color: var(--panel) transparent transparent;
+}
+
+.signup-tooltip.is-open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 .hero-text,
@@ -344,9 +386,30 @@ body.is-leaving .transition-curtain {
   border: 4px solid var(--ink);
   box-shadow: 8px 8px 0 var(--shadow);
   color: var(--ink);
+  font: inherit;
   text-decoration: none;
   text-transform: uppercase;
   font-size: 0.8rem;
+}
+
+.page-select a,
+.page-select-register,
+.pixel-button,
+.sticker,
+.register-modal-close,
+.joystick,
+.button,
+.footer-links a,
+.faq-item summary {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition:
+    transform var(--duration-fast) var(--ease-press),
+    box-shadow var(--duration-fast) var(--ease-press),
+    filter var(--duration-fast) ease,
+    background-color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease;
 }
 
 .pixel-button.primary {
@@ -364,6 +427,154 @@ body.is-leaving .transition-curtain {
   box-shadow: 4px 4px 0 var(--shadow);
 }
 
+.sticker:hover,
+.sticker:focus-visible {
+  transform: rotate(-10deg) translate(4px, 4px);
+}
+
+.register-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2600;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  opacity: 0;
+  transition: opacity 220ms var(--ease-smooth);
+}
+
+.register-modal[hidden] {
+  display: none;
+}
+
+.register-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(19, 17, 38, 0.62);
+  opacity: 0;
+  backdrop-filter: blur(0);
+  transition:
+    opacity 260ms var(--ease-smooth),
+    backdrop-filter 260ms var(--ease-smooth);
+}
+
+.register-modal-card {
+  position: relative;
+  z-index: 1;
+  width: min(640px, 100%);
+  padding: 28px;
+  background: var(--panel);
+  border: 6px solid var(--ink);
+  box-shadow: 14px 14px 0 var(--shadow);
+  opacity: 0;
+  transform: translateY(26px) scale(0.94);
+  transition:
+    opacity var(--duration-base) var(--ease-smooth),
+    transform var(--duration-base) var(--ease-smooth),
+    box-shadow var(--duration-base) var(--ease-smooth);
+}
+
+.register-modal.is-open,
+.register-modal.is-closing {
+  opacity: 1;
+}
+
+.register-modal.is-open .register-modal-backdrop {
+  opacity: 1;
+  backdrop-filter: blur(10px);
+}
+
+.register-modal.is-open .register-modal-card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  box-shadow: 18px 22px 0 var(--shadow);
+}
+
+.register-modal.is-closing .register-modal-backdrop {
+  opacity: 0;
+  backdrop-filter: blur(0);
+}
+
+.register-modal.is-closing .register-modal-card {
+  opacity: 0;
+  transform: translateY(18px) scale(0.97);
+  box-shadow: 12px 14px 0 var(--shadow);
+}
+
+.register-modal-card h2,
+.register-modal-copy {
+  margin: 0;
+}
+
+.register-modal-card h2 {
+  margin-top: 12px;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.register-modal-copy {
+  margin-top: 16px;
+  max-width: 34ch;
+  font-size: 0.72rem;
+  line-height: 1.8;
+}
+
+.register-modal-signup {
+  max-width: none;
+  margin-top: 24px;
+}
+
+.register-modal-tooltip {
+  width: min(320px, calc(100vw - 96px));
+}
+
+.register-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  padding: 10px 12px;
+  border: 4px solid var(--ink);
+  background: var(--white);
+  box-shadow: 6px 6px 0 var(--shadow);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.register-modal-close:hover,
+.register-modal-close:focus-visible {
+  transform: translate(4px, 4px);
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.is-pressed {
+  filter: saturate(1.06) brightness(0.98);
+}
+
+.press-pulse {
+  position: absolute;
+  left: var(--press-x, 50%);
+  top: var(--press-y, 50%);
+  z-index: 1;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  pointer-events: none;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.24) 42%, transparent 72%);
+  transform: translate(-50%, -50%) scale(0.25);
+  opacity: 0.95;
+  mix-blend-mode: screen;
+  animation: press-pulse 520ms var(--ease-smooth) forwards;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -378,6 +589,8 @@ body.is-leaving .transition-curtain {
 
 .cabinet-wrap {
   position: relative;
+  grid-column: 2;
+  grid-row: 1;
   justify-self: center;
   width: min(420px, 100%);
   padding-top: 122px;
@@ -446,6 +659,10 @@ body.is-leaving .transition-curtain {
   background: linear-gradient(180deg, var(--screen) 0%, var(--screen-2) 100%);
   border: 4px solid #09070f;
   touch-action: manipulation;
+  transition:
+    transform 220ms var(--ease-smooth),
+    box-shadow 220ms var(--ease-smooth),
+    border-color 220ms var(--ease-smooth);
 }
 
 .marquee {
@@ -648,6 +865,7 @@ body.is-leaving .transition-curtain {
   background: #2a2740;
   padding: 0;
   cursor: pointer;
+  box-shadow: 8px 8px 0 rgba(19, 17, 38, 0.32);
 }
 
 .stick {
@@ -680,6 +898,7 @@ body.is-leaving .transition-curtain {
   border: 4px solid var(--ink);
   padding: 0;
   cursor: pointer;
+  box-shadow: 6px 6px 0 rgba(19, 17, 38, 0.28);
 }
 
 .button.red {
@@ -701,6 +920,12 @@ body.is-leaving .transition-curtain {
 .screen:focus-visible {
   outline: 3px solid rgba(255, 255, 255, 0.7);
   outline-offset: 3px;
+}
+
+.screen:hover,
+.screen:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 24px rgba(19, 17, 38, 0.18);
 }
 
 main {
@@ -771,6 +996,10 @@ main {
   padding: 28px;
   border: 4px solid var(--ink);
   box-shadow: 10px 10px 0 var(--shadow);
+  transform: translateY(0);
+  transition:
+    transform 260ms var(--ease-smooth),
+    box-shadow 260ms var(--ease-smooth);
 }
 
 .info-card,
@@ -899,6 +1128,10 @@ main {
   background: rgba(255, 255, 255, 0.86);
   border: 4px solid var(--ink);
   box-shadow: 10px 10px 0 var(--shadow);
+  transition:
+    transform 260ms var(--ease-smooth),
+    box-shadow 260ms var(--ease-smooth),
+    background-color 260ms ease;
 }
 
 .faq-item summary {
@@ -1042,22 +1275,65 @@ main {
   grid-column: 1 / -1;
 }
 
+.feature-large:hover,
+.feature-large:focus-within,
+.reward-card:hover,
+.reward-card:focus-within,
+.gallery-card:hover,
+.gallery-card:focus-within,
+.guide-card:hover,
+.guide-card:focus-within,
+.guides-note:hover,
+.guides-note:focus-within,
+.join-banner:hover,
+.join-banner:focus-within,
+.faq-item:hover,
+.faq-item:focus-within {
+  transform: translateY(-6px);
+  box-shadow: 14px 16px 0 var(--shadow);
+}
+
+.faq-item:hover,
+.faq-item:focus-within {
+  background: rgba(255, 255, 255, 0.92);
+}
+
 @keyframes curtain-close {
   from {
     opacity: 0;
+    transform: scale(1.04);
+    backdrop-filter: blur(0);
   }
 
   to {
     opacity: 1;
+    transform: scale(1);
+    backdrop-filter: blur(10px);
   }
 }
 
 @keyframes curtain-open {
   from {
     opacity: 1;
+    transform: scale(1);
+    backdrop-filter: blur(10px);
   }
 
   to {
+    opacity: 0;
+    transform: scale(1.02);
+    backdrop-filter: blur(0);
+  }
+}
+
+@keyframes press-pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.25);
+    opacity: 0.95;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(9.5);
     opacity: 0;
   }
 }
@@ -1091,11 +1367,6 @@ main {
 }
 
 @media (max-height: 900px) and (min-width: 981px) {
-  body::after {
-    height: 112px;
-    opacity: 0.78;
-  }
-
   .page-shell {
     padding-bottom: 72px;
   }
@@ -1133,6 +1404,11 @@ main {
     transform-origin: left top;
   }
 
+  .sticker:hover,
+  .sticker:focus-visible {
+    transform: rotate(-8deg) scale(0.92) translate(4px, 4px);
+  }
+
   .hero-text,
   .signup-tooltip {
     font-size: 0.72rem;
@@ -1149,6 +1425,19 @@ main {
     grid-template-columns: 1fr;
     padding-top: 24px;
     padding-bottom: 32px;
+  }
+
+  .hero-copy,
+  .cabinet-wrap {
+    grid-column: 1;
+  }
+
+  .hero-copy {
+    grid-row: 1;
+  }
+
+  .cabinet-wrap {
+    grid-row: 2;
   }
 
   .cabinet {
@@ -1206,6 +1495,7 @@ main {
     position: static;
     justify-content: flex-end;
     margin-bottom: 18px;
+    flex-wrap: wrap;
   }
 
   .sticker {
@@ -1262,6 +1552,7 @@ main {
     width: 100%;
     right: auto;
     left: 0;
+    transform-origin: bottom left;
   }
 
   .signup-tooltip::before {
@@ -1272,6 +1563,23 @@ main {
   .signup-tooltip::after {
     right: auto;
     left: 28px;
+  }
+
+  .register-modal {
+    padding: 14px;
+  }
+
+  .register-modal-card {
+    padding: 22px 18px 18px;
+  }
+
+  .register-modal-close {
+    position: static;
+    margin-bottom: 18px;
+  }
+
+  .register-modal-tooltip {
+    width: 100%;
   }
 
   .hero-text,
@@ -1309,5 +1617,24 @@ main {
 
   .hero-actions-secondary .pixel-button {
     width: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .press-pulse {
+    display: none;
   }
 }
